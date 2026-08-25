@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TicketController;
 
-// Menampilkan halaman UI index.blade.php saat pertama kali diakses
-Route::get('/', function () {
-    return view('index');
-});
+// 1. Jalur Tampilan Utama (Menggunakan Controller)
+Route::get('/', [TicketController::class, 'index']);
+
+// 2. Jalur Web CRUD Laravel
+Route::resource('tickets', TicketController::class)->except(['create', 'edit', 'show']);
